@@ -1,29 +1,19 @@
 [gd_scene format=3 uid="uid://dfw1oc8k7tbuc"]
 
 [ext_resource type="Script" uid="uid://dvhth6ux0g151" path="res://Scripts/playerMovement.gd" id="1_iby5s"]
-[ext_resource type="Script" uid="uid://bpdwsokas25ft" path="res://Scripts/cameraRotation.gd" id="2_kne1u"]
-[ext_resource type="Texture2D" uid="uid://bwgnsgaol4ru8" path="res://icon.svg" id="3_e80uo"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kne1u"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cxr5p"]
 
 [node name="Player" type="CharacterBody3D" unique_id=1377553774]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5906935, 0, 0)
 script = ExtResource("1_iby5s")
-
-[node name="CameraRig" type="Node3D" parent="." unique_id=547694934]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.747157, 0, 0)
-script = ExtResource("2_kne1u")
-
-[node name="Camera3D" type="Camera3D" parent="CameraRig" unique_id=243807978]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4406466, 0, 7.9671545)
-projection = 1
-current = true
-size = 10.0
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=363768241]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23177338, 0, 0)
 billboard = 2
-texture = ExtResource("3_e80uo")
+texture = SubResource("CompressedTexture2D_kne1u")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1389921467]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://u3pv1pfnm11u"]
+
+[ext_resource type="Script" uid="uid://bpdwsokas25ft" path="res://Scripts/cameraRotation.gd" id="1_e6e23"]
+
+[node name="CameraRig" type="Node3D" unique_id=858118260]
+script = ExtResource("1_e6e23")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=26545914]
+transform = Transform3D(-4.371139e-08, -0.70710677, 0.70710677, 0, 0.70710677, 0.70710677, -1, 3.090862e-08, -3.090862e-08, 5, 5, -0.526)
+current = true
+fov = 90.0
+size = 10.0
