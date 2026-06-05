@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dfw1oc8k7tbuc"]
 
-[ext_resource type="Script" uid="uid://dvhth6ux0g151" path="res://Scripts/playerMovement.gd" id="1_iby5s"]
+[ext_resource type="Script" uid="uid://dvhth6ux0g151" path="res://core/scripts/player_movement.gd" id="1_iby5s"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kne1u"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex"
