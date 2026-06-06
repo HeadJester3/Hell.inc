@@ -1,27 +1,20 @@
 extends Node3D
 
-@export var player: Node3D
-@export var rotation_speed := 5.0
-var target_rotation := 0.0
+@export var player : Node3D
+@export var rotation_speed : float = 5.0
 
-func _ready():
-	target_rotation = rotation_degrees.y
+var target_rotation : float = 0.0
 
-func _process(delta):
-	if player:
-		global_position = player.global_position
+func _ready() -> void:
+	target_rotation = self.rotation_degrees.y
 
-	rotation_degrees.y = lerp(
-		rotation_degrees.y,
-		target_rotation,
-		rotation_speed * delta
-	)
+func _process(delta : float) -> void:
+	if player != null:
+		self.global_position = player.global_position
+	self.rotation_degrees.y = lerpf(rotation_degrees.y, target_rotation, rotation_speed * delta)
 
-func _input(event):
-	
-#tale vo come sua alma 
-	if event.is_action_pressed("camera_left"):
+func _input(event : InputEvent) -> void:
+	if event.is_action_pressed(&"camera_left"):
 		target_rotation -= 90.0
-
-	if event.is_action_pressed("camera_right"):
+	elif event.is_action_pressed(&"camera_right"):
 		target_rotation += 90.0

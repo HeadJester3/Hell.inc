@@ -19,10 +19,21 @@ run/main_scene="uid://cactl826127u4"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/inferred_declaration=1
+
 [editor]
 
 movie_writer/mix_rate=44100
 naming/script_name_casing=2
+
+[file_customization]
+
+folder_colors={
+"res://core/": "purple"
+}
 
 [input]
 
