@@ -2,8 +2,9 @@ extends Node3D
 
 @export var player : Node3D
 @export var rotation_speed : float = 5.0
-
 var target_rotation : float = 0.0
+
+
 
 func _ready() -> void:
 	target_rotation = self.rotation_degrees.y
