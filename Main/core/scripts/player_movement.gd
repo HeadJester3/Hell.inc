@@ -1,21 +1,34 @@
 extends CharacterBody3D
 
 @export var speed : float = 5.0
+@export var sprites : AnimatedSprite3D
+@export var accelerationspd : float = 2.5
+@export var decelerationspd : float = 0.25
+@export var body : Node3D
 
 var direction : Vector3 = Vector3(0.0, 0.0, 0.0)
 
 @onready var camera : Camera3D = $CameraRig/Camera3D as Camera3D
 
 func _physics_process(_delta : float) -> void:
-	var input_dir : Vector2 = Vector2(
-			Input.get_axis(&"move_left", &"move_right"),
+	var input_dir : Vector3 = Vector3(
+			Input.get_axis(&"move_left", &"move_right"), 0.0,
 			Input.get_axis(&"move_forward", &"move_back")
-	)
-	var forward : Vector3 = camera.global_basis.z.normalized()
-	var right : Vector3 = camera.global_basis.x.normalized()
-	direction = (forward * input_dir.y + right * input_dir.x).normalized()
-	if input_dir.length() > 1.0:
-		input_dir = input_dir.normalized()
-	velocity.x = direction.x * speed
-	velocity.z = direction.z * speed
+	).normalized()
+	direction = camera.global_basis * input_dir.normalized()
+
+	if not is_zero_approx(input_dir.length_squared()):
+		velocity.x += direction.x * accelerationspd
+		velocity.z += direction.z * accelerationspd
+		var horizontal : Vector2 = Vector2(velocity.x, velocity.z)
+		body.rotation.y = atan2(-direction.z, direction.x)
+
+		if horizontal.length() > speed:
+			horizontal = horizontal.normalized() * speed
+			velocity.x = horizontal.x
+			velocity.z = horizontal.y
+	else:
+		velocity.x = move_toward(velocity.x, 0, decelerationspd)
+		velocity.z = move_toward(velocity.z, 0, decelerationspd)
+
 	move_and_slide()
