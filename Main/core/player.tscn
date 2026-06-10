@@ -1,20 +1,124 @@
 [gd_scene format=3 uid="uid://dfw1oc8k7tbuc"]
 
 [ext_resource type="Script" uid="uid://dvhth6ux0g151" path="res://core/scripts/player_movement.gd" id="1_iby5s"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kne1u"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex"
+[ext_resource type="Texture2D" uid="uid://cw77d0052y7j0" path="res://assets/chars/cubio/cubio_walk_idle.png" id="2_ptdtg"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cxr5p"]
 
-[node name="Player" type="CharacterBody3D" unique_id=1377553774]
-script = ExtResource("1_iby5s")
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ae0v"]
+atlas = ExtResource("2_ptdtg")
+region = Rect2(32, 128, 32, 32)
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=363768241]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23177338, 0, 0)
-billboard = 2
-texture = SubResource("CompressedTexture2D_kne1u")
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0177"]
+atlas = ExtResource("2_ptdtg")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20ww2"]
+atlas = ExtResource("2_ptdtg")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_liwyg"]
+atlas = ExtResource("2_ptdtg")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1108m"]
+atlas = ExtResource("2_ptdtg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvpc5"]
+atlas = ExtResource("2_ptdtg")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0dwd"]
+atlas = ExtResource("2_ptdtg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dpcx"]
+atlas = ExtResource("2_ptdtg")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3x74s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ae0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0177")
+}],
+"loop": true,
+"name": &"idle_back",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20ww2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_liwyg")
+}],
+"loop": true,
+"name": &"idle_front",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1108m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvpc5")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0dwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dpcx")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 3.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"run_back",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"run_front",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"run_left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"run_right",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody3D" unique_id=1377553774 node_paths=PackedStringArray("sprites", "body")]
+script = ExtResource("1_iby5s")
+speed = 10.0
+sprites = NodePath("Node3D/Sprite3D")
+body = NodePath("Node3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1389921467]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 shape = SubResource("SphereShape3D_cxr5p")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1565609201]
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="Node3D" unique_id=1094331861]
+pixel_size = 0.05
+axis = 0
+texture_filter = 4
+sprite_frames = SubResource("SpriteFrames_3x74s")
+animation = &"idle_right"
