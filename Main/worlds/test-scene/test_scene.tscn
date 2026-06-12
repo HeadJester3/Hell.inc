@@ -8,14 +8,18 @@ size = Vector2(10, 10)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_i0rum"]
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_id7vm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4fss"]
+
 [node name="TestScene" type="Node3D" unique_id=1051761719]
 
-[node name="Chao" type="MeshInstance3D" parent="." unique_id=961774019]
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=961774019]
 mesh = SubResource("PlaneMesh_aocs0")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Chao" unique_id=1462628112]
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground" unique_id=1462628112]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Chao/StaticBody3D" unique_id=2033685729]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D" unique_id=2033685729]
 shape = SubResource("WorldBoundaryShape3D_i0rum")
 
 [node name="Player" parent="." unique_id=1651722277 groups=["player"] instance=ExtResource("1_aocs0")]
@@ -25,3 +29,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9599352, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=572309872]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.472036, 0)
+
+[node name="Block 1" type="MeshInstance3D" parent="." unique_id=772023771]
+transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 2, 10.064937, 2.091926, 0)
+mesh = SubResource("CylinderMesh_id7vm")
+surface_material_override/0 = SubResource("StandardMaterial3D_r4fss")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Block 1" unique_id=712820847]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Block 1/StaticBody3D" unique_id=897803814]
+shape = SubResource("WorldBoundaryShape3D_i0rum")

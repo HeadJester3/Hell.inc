@@ -106,7 +106,6 @@ animations = [{
 
 [node name="Player" type="CharacterBody3D" unique_id=1377553774 node_paths=PackedStringArray("sprites", "body")]
 script = ExtResource("1_iby5s")
-speed = 10.0
 sprites = NodePath("Node3D/Sprite3D")
 body = NodePath("Node3D")
 
@@ -121,4 +120,4 @@ pixel_size = 0.05
 axis = 0
 texture_filter = 4
 sprite_frames = SubResource("SpriteFrames_3x74s")
-animation = &"idle_right"
+animation = &"idle_left"
