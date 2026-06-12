@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://dvhth6ux0g151" path="res://core/scripts/player_movement.gd" id="1_iby5s"]
 [ext_resource type="Texture2D" uid="uid://cw77d0052y7j0" path="res://assets/chars/cubio/cubio_walk_idle.png" id="2_ptdtg"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_cxr5p"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ptdtg"]
+radius = 0.255
+height = 0.95
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ae0v"]
 atlas = ExtResource("2_ptdtg")
@@ -104,21 +106,22 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody3D" unique_id=1377553774 node_paths=PackedStringArray("sprites", "body")]
+[node name="Player" type="CharacterBody3D" unique_id=1377553774 node_paths=PackedStringArray("body", "sprites")]
 script = ExtResource("1_iby5s")
-speed = 10.0
-sprites = NodePath("Node3D/Sprite3D")
-body = NodePath("Node3D")
+body = NodePath("Body")
+sprites = NodePath("Body/AnimatedSprite3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1389921467]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
-shape = SubResource("SphereShape3D_cxr5p")
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.4254717, 0)
+shape = SubResource("CapsuleShape3D_ptdtg")
 
-[node name="Node3D" type="Node3D" parent="." unique_id=1565609201]
+[node name="Body" type="Node3D" parent="." unique_id=1565609201]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6941427, 0)
 
-[node name="Sprite3D" type="AnimatedSprite3D" parent="Node3D" unique_id=1094331861]
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Body" unique_id=1094331861]
 pixel_size = 0.05
-axis = 0
+billboard = 2
 texture_filter = 4
 sprite_frames = SubResource("SpriteFrames_3x74s")
 animation = &"idle_right"
+autoplay = "idle_right"

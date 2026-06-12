@@ -2,14 +2,13 @@ extends Node3D
 
 @export var player : Node3D
 @export var rotation_speed : float = 5.0
+
 var target_rotation : float = 0.0
-
-
 
 func _ready() -> void:
 	target_rotation = self.rotation_degrees.y
 
-func _process(delta : float) -> void:
+func _physics_process(delta : float) -> void:
 	if player != null:
 		self.global_position = player.global_position
 	self.rotation_degrees.y = lerpf(rotation_degrees.y, target_rotation, rotation_speed * delta)

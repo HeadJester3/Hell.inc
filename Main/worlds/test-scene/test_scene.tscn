@@ -19,9 +19,10 @@ mesh = SubResource("PlaneMesh_aocs0")
 shape = SubResource("WorldBoundaryShape3D_i0rum")
 
 [node name="Player" parent="." unique_id=1651722277 groups=["player"] instance=ExtResource("1_aocs0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9599352, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11201692, 0)
 
-[node name="CameraRig" parent="Player" unique_id=858118260 instance=ExtResource("2_3f5q1")]
+[node name="CameraRig" parent="Player" unique_id=858118260 node_paths=PackedStringArray("player") instance=ExtResource("2_3f5q1")]
+player = NodePath("..")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=572309872]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.472036, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.213974, 3.7360754, 0)
