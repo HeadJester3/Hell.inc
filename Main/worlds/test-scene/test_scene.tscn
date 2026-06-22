@@ -12,6 +12,8 @@ size = Vector2(10, 10)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4fss"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_id7vm"]
+
 [node name="TestScene" type="Node3D" unique_id=1051761719]
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=961774019]
@@ -23,9 +25,10 @@ mesh = SubResource("PlaneMesh_aocs0")
 shape = SubResource("WorldBoundaryShape3D_i0rum")
 
 [node name="Player" parent="." unique_id=1651722277 groups=["player"] instance=ExtResource("1_aocs0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9599352, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11201692, 0)
 
-[node name="CameraRig" parent="Player" unique_id=858118260 instance=ExtResource("2_3f5q1")]
+[node name="CameraRig" parent="Player" unique_id=858118260 node_paths=PackedStringArray("player") instance=ExtResource("2_3f5q1")]
+player = NodePath("..")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=572309872]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.472036, 0)
@@ -38,4 +41,4 @@ surface_material_override/0 = SubResource("StandardMaterial3D_r4fss")
 [node name="StaticBody3D" type="StaticBody3D" parent="Block 1" unique_id=712820847]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Block 1/StaticBody3D" unique_id=897803814]
-shape = SubResource("WorldBoundaryShape3D_i0rum")
+shape = SubResource("CylinderShape3D_id7vm")
