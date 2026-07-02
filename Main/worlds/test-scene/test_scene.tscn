@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dfw1oc8k7tbuc" path="res://core/player.tscn" id="1_aocs0"]
 [ext_resource type="PackedScene" uid="uid://u3pv1pfnm11u" path="res://core/camera.tscn" id="2_3f5q1"]
+[ext_resource type="Script" uid="uid://6jw4vniovk8t" path="res://core/scripts/block1_interaction.gd" id="3_r4fss"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aocs0"]
 size = Vector2(10, 10)
@@ -37,6 +38,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.472036, 0)
 transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 2, 10.064937, 2.091926, 0)
 mesh = SubResource("CylinderMesh_id7vm")
 surface_material_override/0 = SubResource("StandardMaterial3D_r4fss")
+script = ExtResource("3_r4fss")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Block 1" unique_id=712820847]
 

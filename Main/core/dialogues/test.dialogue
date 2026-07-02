@@ -1,0 +1,27 @@
+~ start
+do GameState.flow_state = 6
+
+???: hello.
+???: do you have something for me?
+- Yes
+	if GameState.has_prism
+		???: wonderful.
+		???: truly wonderful.
+		???: then
+		???: let us begin.
+	else
+		???: you do not need
+		???: to lie...
+		=>< DontHavePrismFallback
+		=> END
+- Not yet
+	???: i see...
+	???: it is ok.
+	=>< DontHavePrismFallback
+	=> END
+	
+~ DontHavePrismFallback
+???: come back when you have it
+???: i will be waiting.
+
+do GameState.flow_state = 0

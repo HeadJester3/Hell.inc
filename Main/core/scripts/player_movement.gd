@@ -20,9 +20,12 @@ extends CharacterBody3D
 var direction : Vector3 = Vector3.ZERO
 
 @onready var camera : Camera3D = $CameraRig/Camera3D as Camera3D
+@onready var interaction_cast : ShapeCast3D = $Body/ShapeCast3D
 
 
 func _physics_process(_delta : float) -> void:
+	
+	# --- MOVEMENT ---
 	var input_dir : Vector3 = Vector3(
 		Input.get_axis(&"move_left", &"move_right"),
 		0.0,
@@ -60,3 +63,29 @@ func _physics_process(_delta : float) -> void:
 		velocity.z = move_toward(velocity.z, 0.0, deceleration)
 
 	move_and_slide()
+	
+	
+	
+	# --- INTERACTIONS ---
+	if Input.is_action_just_pressed("interact") and GameState.flow_state == 0:
+		interact()
+
+
+
+
+
+# HANDLERS 
+func interact() -> void:
+	interaction_cast.force_shapecast_update()
+
+	for i : int in range(interaction_cast.get_collision_count()):
+		var collider : Object = interaction_cast.get_collider(i)
+
+		if collider == self:
+			continue
+
+		var object : Node = collider.get_parent()
+
+		if object.has_method("interact"):
+			object.interact()
+			return

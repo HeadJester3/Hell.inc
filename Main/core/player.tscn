@@ -106,6 +106,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_ptdtg"]
+
 [node name="Player" type="CharacterBody3D" unique_id=1377553774 node_paths=PackedStringArray("body", "sprites")]
 script = ExtResource("1_iby5s")
 body = NodePath("Body")
@@ -125,3 +127,8 @@ texture_filter = 4
 sprite_frames = SubResource("SpriteFrames_3x74s")
 animation = &"idle_right"
 autoplay = "idle_right"
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="Body" unique_id=441859399]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("SphereShape3D_ptdtg")
+target_position = Vector3(0.5, 0, 0)
