@@ -1,5 +1,4 @@
 ~ start
-do GameState.flow_state = 6
 
 ???: hello.
 ???: do you have something for me?

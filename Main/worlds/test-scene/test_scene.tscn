@@ -12,6 +12,7 @@ size = Vector2(10, 10)
 [sub_resource type="CylinderMesh" id="CylinderMesh_id7vm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4fss"]
+albedo_color = Color(0.42745098, 1, 1, 1)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_id7vm"]
 
@@ -36,6 +37,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.472036, 0)
 
 [node name="Block 1" type="MeshInstance3D" parent="." unique_id=772023771]
 transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 2, 10.064937, 2.091926, 0)
+visibility_range_fade_mode = 1
 mesh = SubResource("CylinderMesh_id7vm")
 surface_material_override/0 = SubResource("StandardMaterial3D_r4fss")
 script = ExtResource("3_r4fss")

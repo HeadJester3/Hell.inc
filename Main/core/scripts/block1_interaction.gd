@@ -1,7 +1,9 @@
 extends MeshInstance3D
 
-const DIALOGUE := preload("res://core/dialogues/test.dialogue")
+var dialogue := preload("res://core/dialogues/teste.dialogue")
 
 func interact() -> void:
 	print("BLOCK INTERACTED")
-	DialogueManager.show_dialogue_balloon(DIALOGUE)
+	GameState.current_dialogue_participants = 4
+	GameState.flow_state = 6
+	DialogueManager.show_dialogue_balloon(dialogue)

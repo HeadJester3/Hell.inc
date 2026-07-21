@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+@onready var camera : Camera3D = $CameraRig/Camera3D as Camera3D
+@onready var interaction_cast : ShapeCast3D = $Body/ShapeCast3D
+
 @export_group("Character Nodes")
 @export var body : Node3D
 @export var sprites : AnimatedSprite3D
@@ -19,10 +22,10 @@ extends CharacterBody3D
 
 var direction : Vector3 = Vector3.ZERO
 
-@onready var camera : Camera3D = $CameraRig/Camera3D as Camera3D
-@onready var interaction_cast : ShapeCast3D = $Body/ShapeCast3D
 
 
+
+# CALLBACKS 
 func _physics_process(_delta : float) -> void:
 	
 	# --- MOVEMENT ---
@@ -69,8 +72,6 @@ func _physics_process(_delta : float) -> void:
 	# --- INTERACTIONS ---
 	if Input.is_action_just_pressed("interact") and GameState.flow_state == 0:
 		interact()
-
-
 
 
 

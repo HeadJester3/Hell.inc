@@ -12,5 +12,6 @@ enum {
 }
 
 var flow_state : int = 0
+var current_dialogue_participants : int = 3
 var has_talked_to_TheWoman : bool = true
 var has_prism : bool = false
