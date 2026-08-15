@@ -45,20 +45,20 @@ func _ready() -> void:
 	# --- TEXTURE LOAD AND MOUSE IGNORING ---
 	var tex_a = load(image_path_a)
 	var tex_b = load(image_path_b)
-	
+
 	underlay.texture = tex_a
 	underlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	background.texture = tex_b
 	background.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	
+
 	# --- SHADER LOAD AND CONFIG (PARAMETERS) ---
 	var mat = ShaderMaterial.new()
 	var shader_res = load("res://core/shaders/buraco_menu.gdshader")
-	
+
 	if shader_res == null:
 		print("ERROR: shader not found!")
 		return
-		
+
 	mat.shader = shader_res
 	mat.set_shader_parameter("texture_a", tex_a)
 	mat.set_shader_parameter("texture_b", tex_b)
@@ -66,7 +66,7 @@ func _ready() -> void:
 	mat.set_shader_parameter("hole_height", hole_height)
 	background.material = mat
 	await get_tree().process_frame # Waits 1 frame to let the sizes load
-	
+
 	# --- ORIGINAL OPTIONS TEXTURES SAVING ---
 	original_textures.clear()
 	for sprite in option_lines:
@@ -75,7 +75,7 @@ func _ready() -> void:
 		else:
 			original_textures.append(null)
 			print("WARNING: OptionLine sprite not found!")
-	
+
 	original_colors.clear()
 	for b in buttons:
 		if b != null:
@@ -83,7 +83,7 @@ func _ready() -> void:
 		else:
 			original_colors.append(Color.WHITE)
 			print("WARNING: Button not found!")
-	
+
 	# --- SQUARE STARTING POSITION ---
 	var marker = markers[0]
 	if marker != null:
@@ -94,16 +94,16 @@ func _ready() -> void:
 		update_textures()  # applies selection to the first option
 	else:
 		print("ERROR: Marker not found!")
-	
+
 	# --- BUTTONS CONFIGURATION ---
 	for b in buttons:
 		b.mouse_filter = Control.MOUSE_FILTER_STOP
 		b.pressed.connect(_on_button_pressed.bind(b))
-	
+
 	print("Menu started. Use W/S to navigate.")
 
 func _input(event: InputEvent) -> void:
-	
+
 	# --- IMPLEMENTS W/S NAVIGATION USING THE MARKERS AS TARGETS ---
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_W or event.keycode == KEY_UP:
@@ -112,7 +112,7 @@ func _input(event: InputEvent) -> void:
 				target_pos = markers[selected_index].global_position
 				is_moving = true
 				print("Selected: ", buttons[selected_index].text)
-		
+
 		# --- IMPLEMENTS UP ARROW/DOWN ARROW NAVIGATION. ANALOGUE. ---
 		elif event.keycode == KEY_S or event.keycode == KEY_DOWN:
 			if selected_index < buttons.size() - 1:
@@ -124,9 +124,9 @@ func _input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if background.material == null or not is_initialized:
 		return
-	
+
 	var diff : Vector2 = target_pos - current_pos
-	
+
 	if diff.length() < 0.1:
 		current_pos = target_pos
 		if is_moving:
@@ -138,7 +138,7 @@ func _process(delta: float) -> void:
 			current_pos = target_pos
 		else:
 			current_pos += diff.normalized() * step
-	
+
 	update_hole()
 
 func _on_button_pressed(button: Button) -> void:
@@ -170,20 +170,20 @@ func update_hole() -> void:
 func update_textures() -> void:
 	if not is_initialized:
 		return
-	
+
 	var tex_sel = load(selected_texture)
-	
+
 	for i in range(option_lines.size()):
 		var sprite = option_lines[i]
 		if sprite == null:
 			continue
-		
+
 		if i == selected_index:
 			sprite.texture = tex_sel
 		else:
 			if i < original_textures.size() and original_textures[i] != null:
 				sprite.texture = original_textures[i]
-		
+
 		var botao = buttons[i]
 		if botao != null:
 			if i == selected_index:

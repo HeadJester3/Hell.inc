@@ -1,12 +1,4 @@
-extends CharacterBody3D
-
-enum CHAR_STATE {IDLE, # 0
-				 WALK, # 1
-				 RUN,} # 2
-
-@export_group("Character Nodes")
-@export var body : Node3D
-@export var sprites : AnimatedSprite3D
+extends Character
 
 @export_group("Velocity")
 @export var speed : float = 10.0
@@ -15,11 +7,12 @@ enum CHAR_STATE {IDLE, # 0
 @export var opposite_deceleration : float = 0.50
 
 var direction : Vector3 = Vector3.ZERO
-var current_char_state : int = 0
 
-@onready var camera : Camera3D = $CameraRig/Camera3D as Camera3D
 @onready var interaction_cast : ShapeCast3D = $Body/ShapeCast3D as ShapeCast3D
 
+func _ready() -> void:
+	if camera == null:
+		camera = get_viewport().get_camera_3d()
 # CALLBACKS
 func _physics_process(_delta : float) -> void:
 	# --- MOVEMENT ---
@@ -31,6 +24,7 @@ func _physics_process(_delta : float) -> void:
 	direction = camera.global_basis * input_dir
 
 	if not is_zero_approx(input_dir.length_squared()):
+		current_char_state = char_state.WALK
 		var horizontal_dir : Vector2 = Vector2(direction.x, direction.z).normalized()
 		var current_horizontal_move : Vector2 = Vector2(velocity.x, velocity.z).normalized()
 		var is_opposite : bool = false
@@ -55,6 +49,7 @@ func _physics_process(_delta : float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, deceleration)
 		velocity.z = move_toward(velocity.z, 0.0, deceleration)
+		current_char_state = char_state.IDLE
 
 	move_and_slide()
 
@@ -76,29 +71,3 @@ func interact() -> void:
 		if object.has_method(&"interact"):
 			object.call(&"interact")
 			break
-
-func wrap_four(value : float) -> int:
-	value = (value - (TAU * floorf((value + PI) / TAU))) / 1.57079632679 # TAU/4, 4 dir. em rad
-	return roundi(value - (4.00 * floorf((value - -2.00) / 4.00)))
-
-func set_facing_sprite() -> void:
-	var ani_name : String = ""
-	match wrap_four(body.rotation.y - camera.global_rotation.y):
-		0:
-			ani_name = "right"
-		2, -2:
-			ani_name = "left"
-		-1:
-			ani_name = "front"
-		1:
-			ani_name = "back"
-		_:
-			ani_name = "front"
-	match current_char_state:
-		CHAR_STATE.IDLE:
-			ani_name = "idle_" + ani_name
-		CHAR_STATE.WALK:
-			ani_name = "walk_" + ani_name
-		CHAR_STATE.RUN:
-			ani_name = "run_" + ani_name
-	sprites.animation = ani_name
