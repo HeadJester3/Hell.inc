@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://dfw1oc8k7tbuc"]
 
-[ext_resource type="Script" uid="uid://dvhth6ux0g151" path="res://core/scripts/player_movement.gd" id="1_iby5s"]
-[ext_resource type="Texture2D" uid="uid://coxvdh8deomp" path="res://assets/chars/padre/padre_matheus_walk.png" id="2_ptdtg"]
+[ext_resource type="Script" uid="uid://dvhth6ux0g151" path="res://core/scripts/player.gd" id="1_iby5s"]
+[ext_resource type="Texture2D" uid="uid://coxvdh8deomp" path="res://assets/chars/padre_matheus/padre_matheus_walk.png" id="2_ptdtg"]
+[ext_resource type="Texture2D" uid="uid://ygwpopp216qb" path="res://assets/attacks/test_slash.png" id="3_4ae0v"]
+[ext_resource type="Texture2D" uid="uid://cw77d0052y7j0" path="res://assets/chars/cubio/cubio_walk_idle.png" id="4_y0177"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ptdtg"]
 radius = 0.255
@@ -166,7 +168,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_back",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -189,7 +191,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_front",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -209,7 +211,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_left",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -229,19 +231,100 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_right",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uixjp"]
 size = Vector3(0.355, 2.025, 1.24)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_6gi0c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4460"]
+atlas = ExtResource("3_4ae0v")
+region = Rect2(1440, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uixjp"]
+atlas = ExtResource("3_4ae0v")
+region = Rect2(1488, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vs62"]
+atlas = ExtResource("3_4ae0v")
+region = Rect2(1536, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxuhn"]
+atlas = ExtResource("3_4ae0v")
+region = Rect2(1584, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1p3a"]
+atlas = ExtResource("3_4ae0v")
+region = Rect2(1632, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8k3y2"]
+atlas = ExtResource("3_4ae0v")
+region = Rect2(1680, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7unwv"]
+atlas = ExtResource("3_4ae0v")
+region = Rect2(1728, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gr0q"]
+atlas = ExtResource("3_4ae0v")
+region = Rect2(1776, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lt7ir"]
+atlas = ExtResource("3_4ae0v")
+region = Rect2(1824, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_102uh"]
+atlas = ExtResource("4_y0177")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6gi0c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4460")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uixjp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vs62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxuhn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1p3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8k3y2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7unwv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gr0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lt7ir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_102uh")
+}],
+"loop": 1,
+"name": &"sword",
+"speed": 30.0
+}]
+
 [node name="Player" type="CharacterBody3D" unique_id=1377553774 node_paths=PackedStringArray("body", "sprites")]
+collision_mask = 8
 script = ExtResource("1_iby5s")
 body = NodePath("Body")
 sprites = NodePath("Body/AnimatedSprite3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1389921467]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.2908525, 0)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.3, 0)
 shape = SubResource("CapsuleShape3D_ptdtg")
 
 [node name="Body" type="Node3D" parent="." unique_id=1565609201]
@@ -253,10 +336,27 @@ pixel_size = 0.05
 billboard = 2
 texture_filter = 4
 sprite_frames = SubResource("SpriteFrames_ptdtg")
-animation = &"idle_front"
+animation = &"walk_back"
 autoplay = "idle_front"
+frame_progress = 0.56856436
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="Body" unique_id=441859399]
 shape = SubResource("BoxShape3D_uixjp")
 target_position = Vector3(0.98, 1.165, 0)
 max_results = 5
+
+[node name="AttackArea" type="Area3D" parent="Body" unique_id=2069890263]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 1, 0)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/AttackArea" unique_id=2041687712]
+shape = SubResource("SphereShape3D_6gi0c")
+
+[node name="AttackAnimation" type="AnimatedSprite3D" parent="Body/AttackArea" unique_id=1355156699]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+billboard = 1
+sprite_frames = SubResource("SpriteFrames_6gi0c")
+animation = &"sword"
+frame_progress = 0.57507396
+speed_scale = 0.9

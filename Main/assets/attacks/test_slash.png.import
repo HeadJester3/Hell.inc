@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coxvdh8deomp"
-path.s3tc="res://.godot/imported/padre_matheus_walk.png-e433a3f1acdf7acb7e029c3c5be7f974.s3tc.ctex"
+uid="uid://ygwpopp216qb"
+path.s3tc="res://.godot/imported/test_slash.png-ffe7c746b393bcf7a24032f5309b782c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/chars/padre/padre_matheus_walk.png"
-dest_files=["res://.godot/imported/padre_matheus_walk.png-e433a3f1acdf7acb7e029c3c5be7f974.s3tc.ctex"]
+source_file="res://assets/attacks/test_slash.png"
+dest_files=["res://.godot/imported/test_slash.png-ffe7c746b393bcf7a24032f5309b782c.s3tc.ctex"]
 
 [params]
 

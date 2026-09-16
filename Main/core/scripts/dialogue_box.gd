@@ -1,21 +1,19 @@
 extends PanelContainer
 
-# --- LAYOUT CONSTANTS ---
 const OUTER_OFFSET : float = 10.0   # Distance from outer edge to first layer
 const LAYER_GAP : float = 20.0      # Thickness of the gap between each rectangle
 const INNER_MARGIN : float = 6.0    # Extra breathing room for text inside the last layer
-@export var num_layers : int = 6    # How many layers to draw (set by GlobalState)
-
-# --- COLOR CONSTANTS ---
-# Outer layer will be Brunette Brown. Inner layer will be Black.
-const COLOR_END := Color(0.545, 0.271, 0.075) # Brunette Brown (RGB: 139, 69, 19)
-const COLOR_START := Color(0.0, 0.0, 0.0)         # Black (RGB: 0, 0, 0)
+const COLOR_END := Color(0.545, 0.271, 0.075) 
+const COLOR_START := Color(0.0, 0.0, 0.0)
+@export var num_layers : int = GameState.current_dialogue_participants
 
 
+
+
+
+# CALLBACKS
 func _draw() -> void:
 	var layer_thickness : float = LAYER_GAP / num_layers
-
-	# Calculate the available drawing area based on the PanelContainer's size
 	var total_width = size.x - 2.0 * OUTER_OFFSET
 	var total_height = size.y - 2.0 * OUTER_OFFSET
 	var x_offset = OUTER_OFFSET
